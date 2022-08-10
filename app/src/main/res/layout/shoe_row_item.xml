@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout>
+
+    <data>
+
+        <variable
+            name="shoe"
+            type="com.udacity.shoestore.models.Shoe" />
+    </data>
+
+    <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:backgroundTint="#21242D"
+        android:clickable="true"
+        android:focusable="true"
+        app:cardCornerRadius="15dp">
+        <!--
+                android:layout_margin="15dp"
+        -->
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:background="?attr/selectableItemBackground"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/itemImageView"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_margin="15dp"
+                android:background="#35383f"
+                android:scaleType="centerInside"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceRounded" />
+
+            <TextView
+                android:id="@+id/itemName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:text="@{shoe.name}"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@id/itemImageView"
+                app:layout_constraintTop_toTopOf="@id/itemImageView"
+                tools:text="Fila Windshift 15" />
+
+            <TextView
+                android:id="@+id/itemBrandLabelTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="@string/brand"
+                app:layout_constraintStart_toStartOf="@id/itemName"
+                app:layout_constraintTop_toBottomOf="@id/itemName" />
+
+            <TextView
+                android:id="@+id/itemBrand"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:text="@{shoe.company}"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/itemBrandLabelTextView"
+                app:layout_constraintStart_toEndOf="@id/itemBrandLabelTextView"
+                app:layout_constraintTop_toTopOf="@id/itemBrandLabelTextView"
+                tools:text="Fila" />
+
+            <TextView
+                android:id="@+id/itemSizeLabelTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="@string/size"
+                app:layout_constraintStart_toStartOf="@id/itemBrandLabelTextView"
+                app:layout_constraintTop_toBottomOf="@id/itemBrandLabelTextView" />
+
+            <TextView
+                android:id="@+id/itemSizeTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:text="@{String.valueOf(shoe.size)}"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/itemSizeLabelTextView"
+                app:layout_constraintStart_toEndOf="@id/itemSizeLabelTextView"
+                app:layout_constraintTop_toTopOf="@id/itemSizeLabelTextView"
+                tools:text="45" />
+
+            <TextView
+                android:id="@+id/itemDescription"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:paddingStart="0dp"
+                android:paddingEnd="5dp"
+                android:scrollbars="vertical"
+                android:text="@{shoe.description}"
+                android:textSize="11sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/itemSizeLabelTextView"
+                app:layout_constraintTop_toBottomOf="@id/itemSizeLabelTextView"
+                tools:text="description" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>
