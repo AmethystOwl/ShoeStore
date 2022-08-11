@@ -23,4 +23,5 @@
     <string name="shoe_size">Shoe size</string>
     <string name="description">Description</string>
     <string name="logout">Logout</string>
+    <string name="save">Save</string>
 </resources>

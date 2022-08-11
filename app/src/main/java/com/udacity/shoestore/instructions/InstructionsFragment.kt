@@ -2,10 +2,12 @@ package com.udacity.shoestore.instructions
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.udacity.shoestore.R
 import com.udacity.shoestore.databinding.FragmentInstructionsBinding
 
 
@@ -30,7 +32,15 @@ class InstructionsFragment : Fragment() {
         binding.startButton.setOnClickListener {
             findNavController().navigate(InstructionsFragmentDirections.actionInstructionsFragmentToShoeListFragment())
         }
+        setHasOptionsMenu(true)
     }
+
+    override fun onPrepareOptionsMenu(menu: Menu) {
+        super.onPrepareOptionsMenu(menu)
+        menu.getItem(0).isVisible = false
+    }
+
+
 
     override fun onDestroyView() {
         super.onDestroyView()

@@ -1,7 +1,10 @@
 package com.udacity.shoestore.shoedetail
 
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -29,7 +32,10 @@ class ShoeDetailFragment : Fragment() {
         requireActivity().title = "Add New Shoe"
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = shoeListViewModel
-
+        setHasOptionsMenu(true)
+        binding.cancelButton.setOnClickListener {
+            requireActivity().onNavigateUp()
+        }
 
         shoeListViewModel.insertState.observe(viewLifecycleOwner) {
             if (it != null) {
@@ -59,11 +65,16 @@ class ShoeDetailFragment : Fragment() {
                     else -> {
                         resetViewsState()
                     }
-
                 }
+                shoeListViewModel.onDoneObservingFieldsState()
             }
         }
         setHasOptionsMenu(true)
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu) {
+        super.onPrepareOptionsMenu(menu)
+        menu.getItem(0).isVisible = false
     }
 
     private fun resetViewsState() {
@@ -78,23 +89,8 @@ class ShoeDetailFragment : Fragment() {
         _binding = null
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.add_shoe_menu, menu)
-        super.onCreateOptionsMenu(menu, inflater)
-
-    }
 
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.cancelMenuItem -> {
-                requireActivity().onNavigateUp()
-                return true
-            }
-        }
-        return super.onOptionsItemSelected(item)
-
-    }
 }
 
 

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.udacity.shoestore.viewmodel.ShoeListViewModel" />
@@ -147,18 +148,30 @@
                 android:textColor="@color/white" />
         </com.google.android.material.textfield.TextInputLayout>
 
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/addItemFAB"
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/saveButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_margin="16dp"
+            android:layout_marginTop="30sp"
+            android:backgroundTint="@color/white"
             android:onClick="@{() -> viewModel.createShoe()}"
-            android:src="@drawable/ic_baseline_check_24"
-            app:backgroundTint="@color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
+            android:text="@string/save"
+            android:textColor="@color/black"
+            app:cornerRadius="20dp"
+            app:layout_constraintEnd_toStartOf="@id/cancelButton"
+            app:layout_constraintTop_toBottomOf="@id/shoeDescriptionTextInputLayout" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/cancelButton"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30sp"
+            android:text="@string/cancel"
+            android:textColor="@color/white"
+            app:cornerRadius="20dp"
+            app:layout_constraintEnd_toEndOf="@id/shoeDescriptionTextInputLayout"
+            app:layout_constraintTop_toBottomOf="@id/shoeDescriptionTextInputLayout" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

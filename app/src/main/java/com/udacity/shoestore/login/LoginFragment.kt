@@ -36,8 +36,7 @@ class LoginFragment : Fragment() {
 
     override fun onPrepareOptionsMenu(menu: Menu) {
         super.onPrepareOptionsMenu(menu)
-        val logoutItem = menu.getItem(0)
-        logoutItem.isVisible = false
+        menu.getItem(0).isVisible = false
     }
     override fun onDestroyView() {
         super.onDestroyView()

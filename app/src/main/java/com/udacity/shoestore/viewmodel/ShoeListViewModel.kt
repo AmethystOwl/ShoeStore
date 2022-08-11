@@ -56,8 +56,8 @@ class ShoeListViewModel : ViewModel() {
             _fieldsState.value = 4
         } else {
             val newShoe = Shoe(shoeName, shoeSize, shoeBrand, shoeDescription)
-            addToList(newShoe)
             resetFields()
+            addToList(newShoe)
 
         }
     }

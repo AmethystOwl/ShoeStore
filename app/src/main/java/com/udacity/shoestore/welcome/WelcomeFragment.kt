@@ -2,6 +2,7 @@ package com.udacity.shoestore.welcome
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
@@ -29,6 +30,12 @@ class WelcomeFragment : Fragment() {
         binding.startButton.setOnClickListener {
             findNavController().navigate(WelcomeFragmentDirections.actionWelcomeFragmentToInstructionsFragment())
         }
+        setHasOptionsMenu(true)
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu) {
+        super.onPrepareOptionsMenu(menu)
+        menu.getItem(0).isVisible = false
     }
 
     override fun onDestroyView() {
