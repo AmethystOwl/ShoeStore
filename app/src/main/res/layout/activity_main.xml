@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
-
-    <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <!-- Linearlayout is used here because the layout is simple -->
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
+        android:orientation="vertical"
         android:layout_height="match_parent"
         tools:context=".activity.MainActivity">
 
@@ -37,5 +38,5 @@
                 android:layout_height="match_parent" />
         </androidx.core.widget.NestedScrollView>
 
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </LinearLayout>
 </layout>

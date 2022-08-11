@@ -6,9 +6,8 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.udacity.shoestore.R
-import com.udacity.shoestore.viewmodel.ShoeListViewModel
 import com.udacity.shoestore.databinding.FragmentShoeDetailBinding
-import com.udacity.shoestore.models.Shoe
+import com.udacity.shoestore.viewmodel.ShoeListViewModel
 
 
 class ShoeDetailFragment : Fragment() {
@@ -29,7 +28,7 @@ class ShoeDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         requireActivity().title = "Add New Shoe"
         binding.lifecycleOwner = viewLifecycleOwner
-        binding.fragment = this
+        binding.viewModel = shoeListViewModel
 
 
         shoeListViewModel.insertState.observe(viewLifecycleOwner) {
@@ -38,6 +37,30 @@ class ShoeDetailFragment : Fragment() {
                     .show()
                 requireActivity().onNavigateUp()
                 shoeListViewModel.onDoneObservingAddState()
+            }
+        }
+
+        shoeListViewModel.fieldsState.observe(viewLifecycleOwner) {
+            it?.let {
+                when (it) {
+                    1 -> {
+                        binding.shoeNameTextInputEditText.error = "Name cannot be empty"
+                    }
+                    2 -> {
+                        binding.shoeBrandTextInputEditText.error = "Brand cannot be empty"
+                    }
+                    3 -> {
+                        binding.shoeSizeTextInputEditText.error = "Size cannot be zero"
+                    }
+                    4 -> {
+                        binding.shoeDescriptionTextInputEditText.error =
+                            "Description cannot be empty"
+                    }
+                    else -> {
+                        resetViewsState()
+                    }
+
+                }
             }
         }
         setHasOptionsMenu(true)
@@ -61,39 +84,6 @@ class ShoeDetailFragment : Fragment() {
 
     }
 
-    fun onFABClicked() {
-        resetViewsState()
-        binding.apply {
-            when {
-                shoeNameTextInputEditText.text.isNullOrEmpty() -> {
-                    shoeNameTextInputLayout.error = "Shoe name must not be empty"
-                    return
-                }
-                shoeBrandTextInputEditText.text.isNullOrEmpty() -> {
-                    shoeBrandTextInputLayout.error = "Shoe brand must not be empty"
-                    return
-                }
-                shoeSizeTextInputEditText.text.isNullOrEmpty() -> {
-                    shoeSizeTextInputLayout.error = "Shoe size must not be empty"
-                    return
-                }
-                shoeDescriptionTextInputEditText.text.isNullOrEmpty() -> {
-                    shoeDescriptionTextInputLayout.error = "Shoe description must not be empty"
-                    return
-                }
-                else -> {
-                    resetViewsState()
-                    val shoeName = shoeNameTextInputEditText.text.toString()
-                    val shoeBrand = shoeBrandTextInputEditText.text.toString()
-                    val shoeDescription = shoeDescriptionTextInputEditText.text.toString()
-                    val shoeSize = shoeSizeTextInputEditText.text.toString().toDouble()
-                    val shoe = Shoe(shoeName, shoeSize, shoeBrand, shoeDescription)
-                    shoeListViewModel.createShoe(shoeName, shoeBrand, shoeSize, shoeDescription)
-                }
-            }
-
-        }
-    }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {

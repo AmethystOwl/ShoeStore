@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        _binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        _binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
         binding.lifecycleOwner = this
         setSupportActionBar(binding.toolbar)
         Timber.plant(Timber.DebugTree())
