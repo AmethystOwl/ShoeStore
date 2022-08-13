@@ -30,12 +30,6 @@ class WelcomeFragment : Fragment() {
         binding.startButton.setOnClickListener {
             findNavController().navigate(WelcomeFragmentDirections.actionWelcomeFragmentToInstructionsFragment())
         }
-        setHasOptionsMenu(true)
-    }
-
-    override fun onPrepareOptionsMenu(menu: Menu) {
-        super.onPrepareOptionsMenu(menu)
-        menu.getItem(0).isVisible = false
     }
 
     override fun onDestroyView() {
